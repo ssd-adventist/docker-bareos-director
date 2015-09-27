@@ -1,5 +1,3 @@
-9a52589bd0f8        postgres                    "/docker-entrypoint.   12 minutes ago      Up 12 minutes       5432/tcp
-▽
 FROM       ubuntu:trusty
 MAINTAINER Kai Wembacher <kai@ktwe.de>
 
