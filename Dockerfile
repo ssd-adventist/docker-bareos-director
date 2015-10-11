@@ -11,7 +11,7 @@ RUN bash -c 'wget -q http://download.bareos.org/bareos/release/15.2/xUbuntu_14.0
 RUN bash -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main" > /etc/apt/sources.list.d/postgres.list'
 RUN bash -c 'wget -q https://www.postgresql.org/media/keys/ACCC4CF8.asc -O- | apt-key add -'
 
-RUN apt-get update && apt-get install postgresql-client-9.4
+RUN apt-get update && apt-get install -y postgresql-client-9.4
 
 RUN bash -c "echo 'bareos-database-common bareos-database-common/dbconfig-install boolean false' | debconf-set-selections"
 RUN bash -c "echo 'bareos-database-common bareos-database-common/install-error select ignore' | debconf-set-selections"
