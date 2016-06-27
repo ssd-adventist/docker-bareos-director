@@ -13,7 +13,7 @@ Simply use the official postgres image. Just replace `<PASSWORD>` a strong datab
 docker run --name bareos-db \
 -e POSTGRES_PASSWORD=<PASSWORD> \
 -v <db_path>:/var/lib/postgresql/data \
--d postgres
+-d postgres:9.4
 ```
 
 **Important:** Do not use the database container for anything else as the database password gets exposed to the Bareos container.
@@ -48,6 +48,16 @@ docker run --name bareos-webui \
 To enable login from the WebUI to the director, simply copy the default config files out of the container to your external director config volume:
 
 ```
-docker cp bareos-webui:/etc/bareos/bareos-dir.d/webui-consoles.conf /your/director/config/bareos-dir.d/
-docker cp bareos-webui:/etc/bareos/bareos-dir.d/webui-profiles.conf /your/director/config/bareos-dir.d/
+docker cp bareos-webui:/etc/bareos/bareos-dir.d/webui-consoles.conf webui-consoles.conf
+docker cp bareos-webui:/etc/bareos/bareos-dir.d/webui-profiles.conf webui-profiles.conf
+docker cp webui-consoles.conf bareos-director:/etc/bareos/bareos-dir.d/webui-consoles.conf
+docker cp webui-profiles.conf bareos-director:/etc/bareos/bareos-dir.d/webui-profiles.conf
+rm webui-consoles.conf webui-profiles.conf
 ```
+
+# Usage
+## WebUI
+Open http://your-host:8080/bareos-webui in your browser. Default username and password is user1/CHANGEME (see webui-consoles.conf).
+
+## bconsole
+Run `docker exec -it bareos-director bconsole`.
