@@ -17,7 +17,9 @@ then
         sed -i "s/dbpassword = \"\"/dbpassword = \"${BAREOS_DB_PASSWORD}\"/" /etc/bareos/bareos-dir.conf
         sed -i "s/dbuser = bareos/dbuser = bareos\n  dbaddress = db\n  dbport = 5432/" /etc/bareos/bareos-dir.conf
 
-        echo @\|"sh -c 'for f in /etc/bareos/bareos-dir.d/*.conf ; do echo @${f} ; done'" >> /etc/bareos/bareos-dir.conf
+        cat /include.conf >> /etc/bareos/bareos-dir.conf
+        rm /include.conf
+        touch /etc/bareos/bareos-dir.d/empty.conf
 
         /usr/lib/bareos/scripts/create_bareos_database
         /usr/lib/bareos/scripts/make_bareos_tables
