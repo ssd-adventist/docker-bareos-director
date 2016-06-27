@@ -25,6 +25,7 @@ RUN apt-get install -y bareos bareos-database-postgresql
 RUN tar cfvz /etc.tgz /etc/bareos/
 
 ADD run.sh /run.sh
+ADD include.conf /include.conf
 RUN chmod u+x /run.sh
 
 EXPOSE 9101
