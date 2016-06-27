@@ -16,6 +16,7 @@ then
 
         sed -i "s/dbpassword = \"\"/dbpassword = \"${BAREOS_DB_PASSWORD}\"/" /etc/bareos/bareos-dir.conf
         sed -i "s/dbuser = bareos/dbuser = bareos\n  dbaddress = db\n  dbport = 5432/" /etc/bareos/bareos-dir.conf
+        sed -i 's/address = .*/address = localhost/' /etc/bareos/bconsole.conf
 
         cat /include.conf >> /etc/bareos/bareos-dir.conf
         rm /include.conf
