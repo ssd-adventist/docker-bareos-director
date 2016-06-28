@@ -30,7 +30,7 @@ RUN chmod u+x /run.sh
 
 EXPOSE 9101
 
-VOLUME /etc/bareos-dir
+VOLUME /etc/bareos
 
 ENTRYPOINT ["/run.sh"]
 CMD ["/usr/sbin/bareos-dir", "-c", "/etc/bareos/bareos-dir.conf", "-u", "bareos", "-f"]
