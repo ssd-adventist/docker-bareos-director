@@ -1,7 +1,9 @@
+Forked from [ktwe](https://github.com/ktwe/docker-bareos-director)
+
 For more information visit the Github repositories:
-* [bareos-director](https://github.com/ktwe/docker-bareos-director)
-* [bareos-webui](https://github.com/ktwe/docker-bareos-webui)
-* [bareos-storage](https://github.com/ktwe/docker-bareos-storage)
+* [bareos-director](https://github.com/ssd-adventist/docker-bareos-director)
+* [bareos-webui](https://github.com/ssd-adventist/docker-bareos-webui)
+* [bareos-storage](https://github.com/ssd-adventist/docker-bareos-storage)
 
 # About
 This package provides images for [Bareos](http://www.bareos.org) Diretor, WebUI and Storage Daemon. It's based on Ubuntu Trusty and the Bareos package repository. PostgreSQL is required as catalog backend. Every component runs in an single container and is linked together.
