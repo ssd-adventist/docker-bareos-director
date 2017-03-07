@@ -12,7 +12,7 @@ then
         export PGHOST=db
         export PGPASSWORD=$DB_ENV_POSTGRES_PASSWORD
 
-        psql -c 'create user bareos with createdb createrole createuser login;'
+        psql -c 'create user bareos with createdb createrole login;'
         psql -c "alter user bareos password '${BAREOS_DB_PASSWORD}'";
 
         sed -i "s/dbpassword = \"\"/dbpassword = \"${BAREOS_DB_PASSWORD}\"/" /etc/bareos/bareos-dir.conf
