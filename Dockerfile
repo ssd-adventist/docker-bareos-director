@@ -18,7 +18,7 @@ RUN apt-get install -y bareos bareos-database-postgresql
 RUN tar cfvz /etc.tgz /etc/bareos/
 
 ADD run.sh /run.sh
-ADD include.conf /include.conf
+#ADD include.conf /include.conf
 RUN chmod u+x /run.sh
 
 EXPOSE 9101
@@ -26,4 +26,5 @@ EXPOSE 9101
 VOLUME /etc/bareos
 
 ENTRYPOINT ["/run.sh"]
-CMD ["/usr/sbin/bareos-dir", "-c", "/etc/bareos/bareos-dir.conf", "-u", "bareos", "-f"]
+#CMD ["/usr/sbin/bareos-dir", "-c", "/etc/bareos/bareos-dir.conf", "-u", "bareos", "-f"]
+CMD ["/usr/sbin/bareos-dir", "-u", "bareos", "-f"]
