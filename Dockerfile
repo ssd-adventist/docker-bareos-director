@@ -21,6 +21,9 @@ ADD run.sh /run.sh
 #ADD include.conf /include.conf
 RUN chmod u+x /run.sh
 
+ADD setup_db.sh /setup_db.sh
+RUN chmod u+x /setup_db.sh
+
 EXPOSE 9101
 
 VOLUME /etc/bareos

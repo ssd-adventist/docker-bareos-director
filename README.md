@@ -40,6 +40,12 @@ docker run --name bareos-director \
 
 **Some notes:** The bareos config file has been modified so any _.conf_ file inside `/etc/bareos/bareos-dir.d/` is included.
 
+To setup the database only without redoing the configuration files run the following:
+```
+docker run -it --rm --link bareos_db_1:db ssdit/bareos-director /bin/bash
+```
+Then run the `setup_db.sh` script on the root directory
+
 ## Bareos WebUI
 We also recommend to store the bareos config to an external volume for easy editing. To do so set `<etc_path>`. If you changed the name of your director container, change the `--link` parameter as well.
 
