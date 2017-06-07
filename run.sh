@@ -5,6 +5,8 @@ then
         if [ ! -f /etc/bareos/bareos-dir.d/catalog/MyCatalog.conf ]
         then
            tar xfvz /etc.tgz
+           chown -R bareos.bareos /etc/bareos
+
            # configure database
            export PGUSER=postgres
            export PGHOST=db

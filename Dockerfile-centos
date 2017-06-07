@@ -1,0 +1,27 @@
+FROM       ssdit/bareos-base-centos:16.2.5
+MAINTAINER Ryann Micua <rmicua@ssd.org>
+
+# install postgres client
+RUN yum -y install postgresql
+
+# install bareos stuff
+RUN yum -y install --skip-broken bareos-director bareos-postgresql bareos-client bareos; yum clean all
+
+RUN chown -R bareos.bareos /etc/bareos
+
+RUN tar cfvz /etc.tgz /etc/bareos/
+
+ADD run.sh /run.sh
+#ADD include.conf /include.conf
+RUN chmod u+x /run.sh
+
+ADD setup_db.sh /setup_db.sh
+RUN chmod u+x /setup_db.sh
+
+EXPOSE 9101
+
+VOLUME /etc/bareos
+
+ENTRYPOINT ["/run.sh"]
+#CMD ["/usr/sbin/bareos-dir", "-c", "/etc/bareos/bareos-dir.conf", "-u", "bareos", "-f"]
+CMD ["/usr/sbin/bareos-dir", "-u", "root", "-f"]
