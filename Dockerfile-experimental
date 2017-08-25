@@ -30,3 +30,6 @@ VOLUME /etc/bareos
 ENTRYPOINT ["/init.sh"]
 #CMD ["/usr/sbin/bareos-dir", "-c", "/etc/bareos/bareos-dir.conf", "-u", "bareos", "-f"]
 CMD ["/usr/sbin/bareos-dir", "-u", "bareos", "-f"]
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
