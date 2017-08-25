@@ -14,7 +14,7 @@ then
            # * $BAREOS_DB_PASSWORD must match user password
 
            sed -i "s/dbpassword = \"\"/dbpassword = \"${BAREOS_DB_PASSWORD}\"/" /etc/bareos/bareos-dir.d/catalog/MyCatalog.conf
-           sed -i "s/dbuser = \"bareos\"/dbuser = \"bareos\"\n  dbaddress = db\n  dbport = 5432/" /etc/bareos/bareos-dir.d/catalog/MyCatalog.conf
+           sed -i "s/dbuser = \"bareos\"/dbuser = \"bareos\"\n  dbaddress = ${BAREOS_DB_HOST}\n  dbport = 5432/" /etc/bareos/bareos-dir.d/catalog/MyCatalog.conf
 
            # create database
            /usr/lib/bareos/scripts/create_bareos_database
