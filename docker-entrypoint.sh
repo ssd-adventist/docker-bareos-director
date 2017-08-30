@@ -5,13 +5,8 @@ if [ ! -f /etc/bareos/bareos-config.control ]
   tar xfvz /etc.tgz
 
   # Update bareos-director configs
-  # * Database and password should already be configured for user 'bareos'
-  # * User 'bareos' must have createdb, createrole and login privileges
-  # * example create user: create user bareos with createdb createrole login;
-  # * example set password: alter user bareos password 'mysecretpassword';
-  # * $BAREOS_DB_PASSWORD must match user password
 
-  sed -i "s/dbpassword = \"\"/dbpassword = \"${DB_PASSWORD}\"/" /etc/bareos/bareos-dir.d/catalog/MyCatalog.conf
+  sed -i "s/dbpassword = \"\"/dbpassword = \"${BAREOS_DB_PASSWORD}\"/" /etc/bareos/bareos-dir.d/catalog/MyCatalog.conf
   sed -i "s/dbuser = \"bareos\"/dbuser = \"bareos\"\n  dbaddress = ${DB_HOST}\n  dbport = 5432/" /etc/bareos/bareos-dir.d/catalog/MyCatalog.conf
 
   # control file
@@ -25,9 +20,9 @@ if [ ! -f /etc/bareos/bareos-db.control ]
   # init posgres db
   export PGUSER=postgres
   export PGHOST=${DB_HOST}
-  export PGPASSWORD=${DB_PASSWORD}
+  export PGPASSWORD=${POSTGRES_PASSWORD}
   psql -c 'create user bareos with createdb createrole createuser login;'
-  psql -c "alter user bareos password '${DB_PASSWORD}';"
+  psql -c "alter user bareos password '${BAREOS_DB_PASSWORD}';"
   /usr/lib/bareos/scripts/create_bareos_database
   /usr/lib/bareos/scripts/make_bareos_tables
   /usr/lib/bareos/scripts/grant_bareos_privileges
