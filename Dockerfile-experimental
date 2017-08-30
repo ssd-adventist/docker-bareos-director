@@ -17,17 +17,14 @@ RUN apt-get install -y bareos bareos-database-postgresql
 
 RUN tar cfvz /etc.tgz /etc/bareos/
 
-ADD init.sh /init.sh
-RUN chmod u+x /init.sh
-
-ADD setup_db.sh /setup_db.sh
-RUN chmod u+x /setup_db.sh
+ADD docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod u+x /docker-entrypoint.sh
 
 EXPOSE 9101
 
 VOLUME /etc/bareos
 
-ENTRYPOINT ["/init.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
 #CMD ["/usr/sbin/bareos-dir", "-c", "/etc/bareos/bareos-dir.conf", "-u", "bareos", "-f"]
 CMD ["/usr/sbin/bareos-dir", "-u", "bareos", "-f"]
 
